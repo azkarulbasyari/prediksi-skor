@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prediksi Piala Dunia FIFA 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="progress-rail" id="progressRail">
+    <a href="#jadwal" class="rail-dot"><span>📅</span></a>
+    <a href="#tebakskor" class="rail-dot"><span>⚽</span></a>
+    <a href="#bracket" class="rail-dot"><span>🏆</span></a>
+    <a href="#statistik" class="rail-dot"><span>📈</span></a>
+    <a href="#kuis" class="rail-dot"><span>🧠</span></a>
+    <a href="#tebakbendera" class="rail-dot"><span>🚩</span></a>
+    <a href="#leaderboard" class="rail-dot"><span>📊</span></a>
+    <a href="grup.html" class="rail-dot"><span>👥</span></a>
+  </div>
+
+  <header class="hero" id="beranda">
+    <nav class="navbar">
+      <div class="brand">
+        <span class="brand-ball">⚽</span>
+        <div>
+          <strong>World Cup Predictor</strong>
+          <small>FIFA World Cup 2026</small>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#jadwal">Jadwal</a>
+        <a href="#tebakskor">Tebak Skor</a>
+        <a href="#bracket">Bracket</a>
+        <a href="#statistik">Statistik</a>
+        <a href="#kuis">Kuis</a>
+        <a href="#tebakbendera">Tebak Bendera</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="grup.html">Grup Prediksi</a>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div class="hero-text">
+        <p class="badge">FIFA World Cup 2026</p>
+        <h1>Prediksi Skor dan Juara FIFA World Cup 2026</h1>
+        <p class="subtitle">Aplikasi ini dibuat untuk memprediksi skor Babak 16 Besar, menentukan tim yang lolos pada fase gugur, dan memilih negara juara dunia versi pengguna.</p>
+
+        <div class="hero-actions">
+          <a href="#tebakskor" class="btn primary">Buat Prediksi</a>
+          <a href="#kuis" class="btn secondary">Lihat Kuis</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span>🏆</span>
+        <h2>Progres Tebakanmu</h2>
+        <p>Semua tebakan tersimpan otomatis di browser ini, jadi tidak hilang walau halaman ditutup.</p>
+        <div class="stat-grid">
+          <div><b id="totalPrediksi">0</b><small>Prediksi Skor</small></div>
+          <div><b id="totalJuara">0</b><small>Tebakan Juara</small></div>
+          <div><b id="totalBracket">0</b><small>Bracket Terisi</small></div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+
+    <!-- ========= JADWAL LAGA MALAM INI ======== -->
+    <section class="section" id="jadwal">
+      <div class="section-title">
+        <p>Jadwal Piala Dunia 2026</p>
+        <h2>Jadwal Pertandingan FIFA World Cup 2026</h2>
+        <span>Halaman ini menampilkan jadwal pertandingan Piala Dunia 2026 sebagai referensi sebelum pengguna membuat prediksi skor.</span>
+      </div>
+
+      <div class="source-box">
+        <div>
+          <b>Sumber Jadwal Pertandingan</b>
+          <p>Gunakan tombol berikut untuk melihat pembaruan jadwal, hasil pertandingan, dan informasi resmi dari Google atau FIFA.</p>
+        </div>
+        <div class="source-actions">
+          <a class="btn primary small" target="_blank" href="https://www.google.com/search?q=semua+jadwal+fifa+series+2026&oq=semua+jadwal+&gs_lcrp=EgZjaHJvbWUqBwgBEAAYgAQyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIGCAMQABgDMg0IBBAAGIMBGLEDGIAEMgcIBRAAGIAEMgYIBhAAGAMyBwgHEAAYgAQyBwgIEAAYgAQyBwgJEAAYgATSAQg0MTM5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#sie=lg;/m/0r4xs1m;2;/m/030q7;mt;fp;1;;;;-1">Buka Jadwal Google</a>
+          <a class="btn secondary small" target="_blank" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/scores-fixtures">Buka FIFA.com</a>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="search" id="matchSearch" placeholder="Cari tim, grup, tanggal, atau stadion..." />
+        <select id="groupFilter">
+          <option value="all">Semua Grup</option>
+        </select>
+      </div>
+
+      <div class="schedule-grid" id="scheduleGrid"></div>
+    </section>
+
+    <!-- ========= TEBAK SKOR ========== -->
+    <section class="section two-col" id="tebakskor">
+      <div class="panel">
+        <div class="section-title left">
+          <p>Form Prediksi</p>
+          <h2>Tebak Skor Pertandingan</h2>
+          <span>Pilih pertandingan yang ingin ditebak, lalu masukkan prediksi skor untuk masing-masing negara.</span>
+        </div>
+        <form id="scoreForm" class="form-box">
+          <label>Nama Penebak</label>
+          <input type="text" id="playerName" placeholder="Contoh: Azkarul" required />
+
+          <label>Pilih Pertandingan</label>
+          <select id="matchSelect" required></select>
+
+          <div class="selected-match-box" id="selectedMatchBox">
+            <div class="selected-team"><span id="teamAFlag">🏳️</span><b id="teamAName">Pilih Tim A</b></div>
+            <span class="selected-vs">VS</span>
+            <div class="selected-team"><span id="teamBFlag">🏳️</span><b id="teamBName">Pilih Tim B</b></div>
+          </div>
+
+          <div class="score-row">
+            <div>
+              <label class="sub-label" id="teamALabel">Skor Tim A</label>
+              <input type="number" id="scoreA" min="0" value="0" required />
+            </div>
+            <div class="score-vs">VS</div>
+            <div>
+              <label class="sub-label" id="teamBLabel">Skor Tim B</label>
+              <input type="number" id="scoreB" min="0" value="0" required />
+            </div>
+          </div>
+
+          <button class="btn primary full" type="submit">Simpan Prediksi Skor</button>
+        </form>
+      </div>
+
+      <div class="panel prediction-list">
+        <div class="section-title left">
+          <p>Riwayat</p>
+          <h2>Daftar Tebakan Skor</h2>
+        </div>
+        <div id="predictionList" class="list-box empty-box">Belum ada prediksi skor.</div>
+      </div>
+    </section>
+
+    <!-- ======= JADWAL 16 BESAR + BRACKET ======= -->
+    <section class="section" id="bracket">
+      <div class="section-title">
+        <p>Babak 16 Besar &amp; Seterusnya</p>
+        <h2>Susun Prediksi Tim Lolos sampai Final</h2>
+        <span>Venue dan jam babak 16 besar sudah resmi (4–7 Juli 2026), tapi nama tim baru pasti setelah babak 32 besar selesai 3 Juli 2026. Sambil menunggu, ketik tebakanmu sendiri pada setiap kotak di bawah — tersimpan otomatis saat diketik.</span>
+      </div>
+
+      <div class="round16-grid" id="round16Grid"></div>
+
+      <div class="bracket-wrap">
+        <div class="round">
+          <h3>16 Besar</h3>
+          <input class="bracket-input" data-key="r16-1" placeholder="Pemenang Laga 1 (Houston)" />
+          <input class="bracket-input" data-key="r16-2" placeholder="Pemenang Laga 2 (Philadelphia)" />
+          <input class="bracket-input" data-key="r16-3" placeholder="Pemenang Laga 3 (New York/NJ)" />
+          <input class="bracket-input" data-key="r16-4" placeholder="Pemenang Laga 4 (Mexico City)" />
+          <input class="bracket-input" data-key="r16-5" placeholder="Pemenang Laga 5 (Dallas)" />
+          <input class="bracket-input" data-key="r16-6" placeholder="Pemenang Laga 6 (Seattle)" />
+          <input class="bracket-input" data-key="r16-7" placeholder="Pemenang Laga 7 (Atlanta)" />
+          <input class="bracket-input" data-key="r16-8" placeholder="Pemenang Laga 8 (Vancouver)" />
+        </div>
+        <div class="round">
+          <h3>Perempat Final</h3>
+          <input class="bracket-input tall" data-key="qf-1" placeholder="Perempat Final 1" />
+          <input class="bracket-input tall" data-key="qf-2" placeholder="Perempat Final 2" />
+          <input class="bracket-input tall" data-key="qf-3" placeholder="Perempat Final 3" />
+          <input class="bracket-input tall" data-key="qf-4" placeholder="Perempat Final 4" />
+        </div>
+        <div class="round">
+          <h3>Semifinal</h3>
+          <input class="bracket-input huge" data-key="sf-1" placeholder="Semifinal 1" />
+          <input class="bracket-input huge" data-key="sf-2" placeholder="Semifinal 2" />
+        </div>
+        <div class="round champion-round">
+          <h3>Final</h3>
+          <input class="bracket-input champion" data-key="champion" placeholder="Juara Dunia" />
+          <div class="trophy">🏆</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= STATISTIK ======= -->
+    <section class="section" id="statistik">
+      <div class="section-title">
+        <p>Data Turnamen</p>
+        <h2>Statistik &amp; Sorotan Pemain</h2>
+        <span>Top scorer sementara dan fakta menarik dari fase grup Piala Dunia 2026 yang sedang berlangsung.</span>
+      </div>
+
+      <div class="stat-cards-grid">
+        <div class="stat-highlight-card">
+          <span class="stat-icon">👑</span>
+          <h3>Top Scorer Sementara</h3>
+          <p class="stat-sub">Update fase grup</p>
+        </div>
+        <div class="scorer-list" id="scorerList"></div>
+      </div>
+
+      <div class="fact-grid" id="factGrid"></div>
+    </section>
+
+    <!-- ======= KUIS ======= -->
+    <section class="section" id="kuis">
+      <div class="section-title">
+        <p>Uji Wawasanmu</p>
+        <h2>Kuis Piala Dunia</h2>
+        <span>5 pertanyaan seputar sejarah dan fakta Piala Dunia. Jawab semua untuk lihat skormu.</span>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress">
+          <span id="quizProgressText">Soal 1 dari 5</span>
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+        </div>
+        <h3 class="quiz-question" id="quizQuestion">Memuat soal...</h3>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+      </div>
+
+      <div class="quiz-result hidden" id="quizResult">
+        <span class="quiz-result-emoji" id="quizResultEmoji">🎉</span>
+        <h3 id="quizResultTitle">Hasil Kuis</h3>
+        <p id="quizResultText"></p>
+        <button class="btn primary" id="quizRestartBtn">Main Lagi</button>
+      </div>
+    </section>
+
+    <!-- ======= TEBAK BENDERA ======= -->
+    <section class="section" id="tebakbendera">
+      <div class="section-title">
+        <p>Mini Game</p>
+        <h2>Tebak Bendera Negara</h2>
+        <span>Tebak nama negara peserta Piala Dunia 2026 dari emoji benderanya. Skor dan waktu tercatat otomatis.</span>
+      </div>
+
+      <div class="flag-game-card">
+        <div class="flag-game-stats">
+          <div><b id="flagScore">0</b><small>Skor</small></div>
+          <div><b id="flagStreak">0</b><small>Beruntun Benar</small></div>
+          <div><b id="flagTimer">30</b><small>Detik</small></div>
+        </div>
+
+        <div class="flag-display" id="flagDisplay">🏁</div>
+
+        <div class="flag-options" id="flagOptions"></div>
+
+        <button class="btn primary" id="flagStartBtn">Mulai Main</button>
+      </div>
+    </section>
+
+    <!-- ======= JUARA ======= -->
+    <section class="section two-col" id="juara">
+      <div class="panel">
+        <div class="section-title left">
+          <p>Tebak Juara Dunia</p>
+          <h2>Pilih Negara Jagoanmu</h2>
+        </div>
+        <form id="championForm" class="form-box">
+          <label>Nama Penebak</label>
+          <input type="text" id="championName" placeholder="Contoh: Rull" required />
+          <label>Negara Juara Dunia 2026</label>
+          <input type="text" id="championCountry" placeholder="Contoh: Argentina" required />
+          <button class="btn primary full" type="submit">Simpan Tebakan Juara</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="section-title left">
+          <p>Riwayat</p>
+          <h2>Daftar Tebakan Juara</h2>
+        </div>
+        <div id="championList" class="list-box empty-box">Belum ada tebakan juara.</div>
+      </div>
+    </section>
+
+    <!-- ======= LEADERBOARD ======= -->
+    <section class="section" id="leaderboard">
+      <div class="section-title">
+        <p>Papan Peringkat</p>
+        <h2>Leaderboard Otomatis</h2>
+        <span>Prediksi skor = 10 poin, tebakan juara = 30 poin, kuis = 5 poin/jawaban benar, tebak bendera = 3 poin/jawaban benar. Bobot poin bisa disesuaikan setelah hasil asli keluar.</span>
+      </div>
+
+      <div class="podium" id="podium"></div>
+
+      <div class="leaderboard-card">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Peringkat</th>
+                <th>Nama</th>
+                <th>Prediksi</th>
+                <th>Poin</th>
+                <th>Badge</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reset-area">
+        <button id="resetBtn" class="btn danger">Reset Semua Data</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>World Cup Predictor 2026</strong>
+    <p>Dibuat dengan HTML, CSS, dan JavaScript.</p>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Kembali ke atas">↑</button>
+
+  <div class="confetti-layer" id="confettiLayer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

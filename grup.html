@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grup Prediksi FIFA World Cup 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="grup.css" />
+</head>
+<body class="group-page">
+  <header class="group-hero">
+    <nav class="navbar group-nav">
+      <a class="brand brand-link" href="index.html">
+        <span class="brand-ball">⚽</span>
+        <div>
+          <strong>World Cup Predictor</strong>
+          <small>FIFA World Cup 2026</small>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kuis">Kuis</a>
+        <a href="index.html#tebakbendera">Tebak Bendera</a>
+        <a class="active-link" href="grup.html">Grup Prediksi</a>
+      </div>
+    </nav>
+
+    <section class="group-intro">
+      <p class="badge">Mode Grup Prediksi</p>
+      <h1>Prediksi Bareng Teman</h1>
+      <p>Halaman ini dipakai untuk membuat grup, masuk memakai kode grup, lalu mengisi prediksi skor dan juara dalam satu ruang yang sama.</p>
+      <div class="group-note">
+        <b>Catatan:</b> buat grup, bagikan kodenya ke teman, lalu prediksi bareng — leaderboard grup akan berubah otomatis tiap ada prediksi baru masuk.
+      </div>
+    </section>
+  </header>
+
+  <main class="group-main">
+    <div id="configBanner" class="config-banner hidden">
+      <b>⚠️ Firebase belum dikonfigurasi.</b>
+      <p>Supaya kode grup bisa dipakai teman dari HP/laptop lain, isi <code>FIREBASE_DB_URL</code> di file <code>grup.js</code> dengan Database URL dari Firebase Realtime Database. Lihat komentar di paling atas file <code>grup.js</code> untuk langkah-langkahnya.</p>
+    </div>
+
+    <section class="group-card" id="entrySection">
+      <div class="group-card-title">
+        <p>Mulai dari sini</p>
+        <h2>Buat atau Gabung Grup</h2>
+      </div>
+
+      <div class="entry-grid">
+        <form id="createGroupForm" class="group-form">
+          <h3>Buat Grup</h3>
+          <label>Nama Grup</label>
+          <input type="text" id="newGroupName" placeholder="Contoh: PTI Semester 2" required />
+          <label>Nama Admin</label>
+          <input type="text" id="adminName" placeholder="Contoh: Azkarul" required />
+          <button class="btn primary full" type="submit">Buat Grup</button>
+        </form>
+
+        <form id="joinGroupForm" class="group-form">
+          <h3>Gabung Grup</h3>
+          <label>Kode Grup</label>
+          <input type="text" id="joinCode" placeholder="Contoh: PTI826X" required />
+          <label>Nama Peserta</label>
+          <input type="text" id="memberName" placeholder="Contoh: Dika" required />
+          <button class="btn secondary full" type="submit">Gabung Grup</button>
+        </form>
+      </div>
+
+      <div id="createdBox" class="created-box hidden">
+        <span>Kode Grup</span>
+        <strong id="createdCode">-</strong>
+        <p id="createdInfo">Bagikan kode ini ke teman yang ingin ikut prediksi.</p>
+        <div class="created-actions">
+          <button class="btn primary small" id="copyCodeBtn" type="button">Salin Kode</button>
+          <button class="btn secondary small" id="copyLinkBtn" type="button">Salin Link</button>
+          <button class="btn secondary small" id="shareWaBtn" type="button">Share WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid hidden" id="dashboardSection">
+      <div class="group-card dashboard-head">
+        <div>
+          <p class="badge small-badge">Dashboard Grup</p>
+          <h2 id="dashboardGroupName">Nama Grup</h2>
+          <span id="activeMemberText">Peserta aktif: -</span>
+        </div>
+        <div class="code-pill">
+          <small>Kode Grup</small>
+          <b id="dashboardCode">-</b>
+        </div>
+      </div>
+
+      <div class="mini-stat-wrap">
+        <div class="mini-stat"><b id="memberCount">0</b><span>Anggota</span></div>
+        <div class="mini-stat"><b id="predictionCount">0</b><span>Prediksi Skor</span></div>
+        <div class="mini-stat"><b id="championCount">0</b><span>Tebakan Juara</span></div>
+      </div>
+
+      <div class="group-card members-card">
+        <div class="group-card-title left-title">
+          <p>Anggota</p>
+          <h2>Peserta Grup</h2>
+        </div>
+        <div id="memberList" class="member-list"></div>
+      </div>
+
+      <div class="group-card">
+        <div class="group-card-title left-title">
+          <p>Prediksi Skor</p>
+          <h2>Tebak Pertandingan</h2>
+        </div>
+        <form id="groupScoreForm" class="group-form compact-form">
+          <label>Pilih Pertandingan</label>
+          <select id="groupMatchSelect"></select>
+
+          <div class="selected-match-box group-selected">
+            <div class="selected-team"><span id="groupFlagA">🏳️</span><b id="groupTeamA">Tim A</b></div>
+            <span class="selected-vs">VS</span>
+            <div class="selected-team"><span id="groupFlagB">🏳️</span><b id="groupTeamB">Tim B</b></div>
+          </div>
+
+          <div class="score-row">
+            <div>
+              <label id="groupLabelA">Skor Tim A</label>
+              <input type="number" id="groupScoreA" min="0" value="0" required />
+            </div>
+            <div class="score-vs">VS</div>
+            <div>
+              <label id="groupLabelB">Skor Tim B</label>
+              <input type="number" id="groupScoreB" min="0" value="0" required />
+            </div>
+          </div>
+          <button class="btn primary full" type="submit">Simpan Prediksi Grup</button>
+        </form>
+      </div>
+
+      <div class="group-card">
+        <div class="group-card-title left-title">
+          <p>Juara Dunia</p>
+          <h2>Pilih Negara Juara</h2>
+        </div>
+        <form id="groupChampionForm" class="group-form compact-form">
+          <label>Negara Juara</label>
+          <select id="championSelect"></select>
+          <button class="btn secondary full" type="submit">Simpan Tebakan Juara</button>
+        </form>
+      </div>
+
+      <div class="group-card wide-card">
+        <div class="group-card-title left-title">
+          <p>Riwayat Grup</p>
+          <h2>Prediksi yang Masuk</h2>
+        </div>
+        <div id="groupPredictionList" class="group-list empty-box">Belum ada prediksi grup.</div>
+      </div>
+
+      <div class="group-card wide-card">
+        <div class="group-card-title left-title">
+          <p>Leaderboard</p>
+          <h2>Peringkat Grup</h2>
+        </div>
+        <div id="groupLeaderboard" class="leaderboard-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="groupToast" class="group-toast">Berhasil</div>
+  <script src="grup.js"></script>
+</body>
+</html>
