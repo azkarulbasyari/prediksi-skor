@@ -41,7 +41,94 @@
         <a href="#leaderboard">Leaderboard</a>
         <a href="grup.html">Grup Prediksi</a>
       </div>
+
+      <!-- Mobile hamburger button -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Buka menu" aria-expanded="false">
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+        <span class="ham-bar"></span>
+      </button>
     </nav>
+
+    <!-- Mobile dropdown menu — Konsep A -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <div class="mobile-menu-header">
+          <span class="mobile-menu-title">Navigasi</span>
+          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Tutup menu">✕</button>
+        </div>
+        <nav class="mobile-nav-list">
+          <a href="#jadwal" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-blue">📅</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Jadwal</b>
+              <small class="mnav-sub">Semua pertandingan</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#tebakskor" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-green">⚽</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Tebak Skor</b>
+              <small class="mnav-sub">Buat prediksimu</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#bracket" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-gold">🏆</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Bracket</b>
+              <small class="mnav-sub">16 besar hingga final</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#statistik" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-blue">📈</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Statistik</b>
+              <small class="mnav-sub">Top scorer &amp; fakta menarik</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#kuis" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-purple">🧠</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Kuis</b>
+              <small class="mnav-sub">Uji wawasan Piala Dunia</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#tebakbendera" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-green">🚩</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Tebak Bendera</b>
+              <small class="mnav-sub">Mini game seru</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="#leaderboard" class="mobile-nav-item">
+            <span class="mnav-icon-wrap mnav-gold">📊</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Leaderboard</b>
+              <small class="mnav-sub">Papan peringkat</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+          <a href="grup.html" class="mobile-nav-item mnav-featured">
+            <span class="mnav-icon-wrap mnav-purple">👥</span>
+            <span class="mnav-text">
+              <b class="mnav-name">Grup Prediksi</b>
+              <small class="mnav-sub">Main bareng teman</small>
+            </span>
+            <span class="mnav-arrow">›</span>
+          </a>
+        </nav>
+        <div class="mobile-menu-footer">
+          <span class="mnav-status-dot"></span>
+          <span>FIFA World Cup 2026</span>
+        </div>
+      </div>
+    </div>
 
     <section class="hero-content">
       <div class="hero-text">
@@ -69,7 +156,7 @@
 
   <main>
 
-    <!-- ========= JADWAL LAGA MALAM INI ======== -->
+    <!-- ======= JADWAL LAGA MALAM INI ======== -->
     <section class="section" id="jadwal">
       <div class="section-title">
         <p>Jadwal Piala Dunia 2026</p>
@@ -98,7 +185,7 @@
       <div class="schedule-grid" id="scheduleGrid"></div>
     </section>
 
-    <!-- ========= TEBAK SKOR ========== -->
+    <!-- ================= TEBAK SKOR ================= -->
     <section class="section two-col" id="tebakskor">
       <div class="panel">
         <div class="section-title left">
@@ -144,7 +231,7 @@
       </div>
     </section>
 
-    <!-- ======= JADWAL 16 BESAR + BRACKET ======= -->
+    <!-- ======= JADWAL 16 BESAR + BRACKET======== -->
     <section class="section" id="bracket">
       <div class="section-title">
         <p>Babak 16 Besar &amp; Seterusnya</p>
@@ -206,7 +293,7 @@
       <div class="fact-grid" id="factGrid"></div>
     </section>
 
-    <!-- ======= KUIS ======= -->
+    <!-- ======= KUIS ======== -->
     <section class="section" id="kuis">
       <div class="section-title">
         <p>Uji Wawasanmu</p>
@@ -232,7 +319,7 @@
       </div>
     </section>
 
-    <!-- ======= TEBAK BENDERA ======= -->
+    <!-- ======= TEBAK BENDERA ======== -->
     <section class="section" id="tebakbendera">
       <div class="section-title">
         <p>Mini Game</p>
@@ -255,7 +342,7 @@
       </div>
     </section>
 
-    <!-- ======= JUARA ======= -->
+    <!-- ================= JUARA ================= -->
     <section class="section two-col" id="juara">
       <div class="panel">
         <div class="section-title left">
@@ -321,5 +408,79 @@
   <div class="confetti-layer" id="confettiLayer"></div>
 
   <script src="script.js"></script>
+  <script>
+    // =========== MOBILE HAMBURGER MENU ===========
+    (function() {
+      const btn = document.getElementById('hamburgerBtn');
+      const menu = document.getElementById('mobileMenu');
+      const closeBtn = document.getElementById('mobileMenuClose');
+      const navLinks = menu.querySelectorAll('.mobile-nav-item');
+
+      function positionMenu() {
+        const rect = btn.getBoundingClientRect();
+        const gap = 10;
+        menu.style.top = (rect.bottom + gap) + 'px';
+
+
+        const rightEdge = window.innerWidth - rect.right;
+        menu.style.right = Math.max(rightEdge, 18) + 'px';
+
+
+        const maxW = rect.right - 18;
+        menu.style.width = Math.min(360, maxW) + 'px';
+      }
+
+      function openMenu() {
+        positionMenu();
+        menu.classList.add('is-open');
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (menu.classList.contains('is-open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      closeBtn.addEventListener('click', closeMenu);
+
+
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          setTimeout(closeMenu, 120);
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (menu.classList.contains('is-open') &&
+            !menu.contains(e.target) &&
+            !btn.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // Reposition on resize/scroll
+      window.addEventListener('resize', function() {
+        if (menu.classList.contains('is-open')) positionMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
